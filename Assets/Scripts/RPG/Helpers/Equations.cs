@@ -31,6 +31,7 @@ namespace RPG.Helpers
         public static bool CanLevelUp(long currentLevel)
         {
             return currentLevel < MaxLevel;
+
         }
     }
 

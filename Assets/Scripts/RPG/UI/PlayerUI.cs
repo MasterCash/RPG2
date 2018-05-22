@@ -18,8 +18,8 @@ namespace RPG.UI
         [SerializeField] private Text _name;
         [SerializeField] private Text _level;
         [SerializeField] private Text _healthValue;
-        private double _yellowHealthPercent = .5;
-        private double _redHealthPercent = .3;
+        private readonly float _yellowHealthPercent = .5f;
+        private readonly float _redHealthPercent = .3f;
 
         // Use this for initialization
         void Start ()
