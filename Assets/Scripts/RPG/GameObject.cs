@@ -1,41 +1,46 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace RPG
 {
-
-    public class GameObject : Object
+    [Serializable]
+    public class GameObject
     {
-        private static long _idCount = 0;
-        private readonly long _id;
-        private static readonly HashSet<GameObject> ids = new HashSet<GameObject>();
+        private static long _idCount;
+        private static readonly HashSet<GameObject> Ids = new HashSet<GameObject>();
 
-        public long ID
-        {
-            get { return _id; }
-        }
+        public long Id { get; private set; }
+
+        public string Name { get; protected set; }
 
         public Vector3? Location { set; get; }
 
         public GameObject()
         {
-            _id = ++_idCount;
+            Id = ++_idCount;
             Location = null;
-            ids.Add(this);
+            Ids.Add(this);
         }
 
-        public GameObject(string objName, Vector3? loc = null)
+        public GameObject(string objName, Vector3? loc = null) : this()
         {
-            name = objName;
+            Name = objName;
             Location = loc;
-            _id = ++_idCount;
-            ids.Add(this);
+        }
+
+        public GameObject(GameObject obj)
+        {
+            Id = obj.Id;
+            Name = obj.Name;
+            Location = obj.Location;
         }
 
         ~GameObject() 
         {
-            ids.Remove(this);
+            Ids.Remove(this);
         }
     }
 }
